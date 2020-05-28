@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.table{
+			position: absolute;
+			left: 800px;
+			height: 230px;
+			width: 600px;
+			background-image: url(table.jfif);
+			background-size: 100% 100%;
+			width: 600px;
+			height: 230px;
+			border: solid 5px black;
+		}
+		.box{
+			width: 150px;
+			height: 150px;
+			background-color:#8B4513;
+			border: solid 2px black;
+			background-image: url(warrior.png);
+			background-size: 100% 100%;
+		}
+		.warrior{
+			background-image: url(warrior.png);
+			background-size: 100% 100%;
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			left: 0px;
+			top: 420px;
+			opacity: 0;
+			transition: 2s;
+		}
+		.enemy{
+			background-image: url(enemy.png);
+			background-size: 100% 100%;
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			left: 1770px;
+			top: 340px;
+			transition: 2s;
+		}
+		.youwin{
+			display: none;
+			position: absolute;
+			left: 790px;
+			top: 300px;
+			background-image: url(youwin.png);
+			background-size: 100% 100%;
+			width : 400px;
+			height : 240px;
+		}
+		.youlose{
+			display: none;
+			position: absolute;
+			left: 790px;
+			top: 300px;
+			background-image: url(youlose.png);
+			background-size: 100% 100%;
+			width : 400px;
+			height : 240px;
+		}
+		.cool{
+			display: none;
+		}
+		.menu{
+			width: 1000px;
+			height: 500px;
+			position: absolute;
+			left: 450px;
+			background-image: url(table.jfif);
+			background-size: 100% 100%;
+		}
+		.btn{
+			border-radius: 3px; 
+			background-color: green; 
+			width: 150px; 
+			height: 70px;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<div class="menu">
+		<h1 style="font-family: Arial; color: white; text-align: center; font-size: 50px;">Menu:</h1>
+		<p style="font-family: Arial; color: white; text-align: center; font-size: 30px;">Твоя задача в том чтобы твой герой дошел до конца дороги и выжил , но не дай дойти врагу , так как он может тебя застать в расплох.</p>
+		<button class="btn" style=" color: white; font-family: Arial; text-align: center; font-size: 20px; margin-left: 425px;">Начать игру</button>
+	</div>
+	<div class="youlose"></div>
+	<div class="youwin"></div>
+	<div class="cool" style="background-image: url(tower.png); background-size: 100% 100%; width: 1900px ; height: 920px;">
+		<div class="warrior warrior_dmg"></div>
+		<div class="enemy enemy_dmg"></div>
+		<div class="table">
+		<div class="box">
+		</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		let btn = document.querySelector('.btn');
+		let warrior = document.querySelector('.warrior');
+		let enemy = document.querySelector('.enemy');
+		let menu = document.querySelector('.menu');
+		let cool = document.querySelector('.cool');
+		let youlose = document.querySelector('.youlose');
+		//warrior
+		let move = function () {
+			warrior.style.left = 240 + 'px';
+ 		}
+
+ 		let move1 = function () {
+ 			warrior.style.top = 150 + 'px';
+ 		
+ 		}
+ 		let move2 = function () {
+ 			warrior.style.left = 630 + 'px';
+ 		}
+
+ 		let move3 = function () {
+ 			warrior.style.top = 480 + 'px';
+ 		}
+
+ 		let move4 = function () {
+ 			warrior.style.left = 1160 + 'px';
+ 		}
+
+ 		let move5 = function () {
+ 			warrior.style.top = 330 + 'px';
+ 		}
+
+ 		let move6 = function () {
+ 			warrior.style.left = 1770 + 'px';
+ 		}
+
+ 		let move7 = function () {
+ 			if (warrior1.hp < enemy1.hp) {
+				alert('Твой замок разрушили!!');
+				cool.style.display = 'none';
+				youlose.style.display = 'block';
+
+			}
+			if (enemy1.hp < warrior1.hp) {
+				alert('Ты сокрушил замок врaга!');
+ 				document.querySelector('.cool').style.display = 'none';
+				document.querySelector('.youwin').style.display = 'block';
+			}
+ 		}
+
+
+
+ 		//enemy
+ 		let emove = function() {
+ 			enemy.style.left = 1160 + 'px';
+ 		}
+
+ 		let emove1 = function() {
+ 			enemy.style.top = 480 + 'px';
+ 		}
+
+ 		let emove2 = function() {
+ 			enemy.style.left = 630 + 'px';
+ 		}
+
+ 		let emove3 = function() {
+ 			enemy.style.top = 150 + 'px';
+ 		}
+
+		let emove4 = function() {
+ 			enemy.style.left = 240 + 'px';
+ 		}
+
+ 		let emove5 = function() {
+ 			enemy.style.top = 420 + 'px';
+ 		}
+
+ 		let emove6 = function() {
+ 			enemy.style.left = 1 + 'px';
+ 		}
+
+		btn.onclick = function() {
+			warrior.style.opacity = 1;
+			menu.style.display = 'none';
+			cool.style.display = 'block';
+		}
+		let getRandom = function() {
+			let num = Math.random() * 100;
+			let roundNum = Math.round(num);
+			return roundNum;
+		}
+		let enemy1 = {
+			name: 'Враг',
+			hp: 100,
+			dmg: getRandom()
+		}
+		let warrior1 = {
+			name: 'Воин',
+			hp: 100,
+			dmg: getRandom()
+		}
+
+		// warrior dmg.
+		let warrior_dmg = document.querySelector('.warrior_dmg');
+		warrior_dmg.innerHTML = warrior1.dmg + 'dmg';
+
+		// enemy dmg.
+		let enemy_dmg = document.querySelector('.enemy_dmg');
+		enemy_dmg.innerHTML = enemy1.dmg + 'dmg';
+
+		let attack = function() {
+			enemy1.hp = enemy1.hp - warrior1.dmg;
+			enemy_dmg.innerHTML = enemy1.hp + 'hp';
+			warrior1.hp = warrior1.hp - enemy1.dmg;
+			warrior_dmg.innerHTML = warrior1.hp + 'hp';
+			alert('Атака началась');
+			if (warrior1.hp < enemy1.hp) {
+				alert('You lose!');
+				warrior.style.opacity = 0;
+			}
+			if (enemy1.hp < warrior1.hp) {
+				alert('You win him!');
+				enemy.style.opacity = 0;
+			}
+		}
+		//warrior
+		setTimeout(move, 4000);
+		setTimeout(move1, 6000);
+		setTimeout(move2, 8000);
+		setTimeout(move3, 10000);
+		setTimeout(attack, 12000);
+		setTimeout(move4, 16000);
+		setTimeout(move5, 18000);
+		setTimeout(move6, 20000);
+		setTimeout(move7, 23000);
+		//enemy
+		setTimeout(emove, 4000);
+		setTimeout(emove1, 6000);
+		setTimeout(emove2, 8000);
+		setTimeout(emove3, 16000);
+		setTimeout(emove4, 18000);
+		setTimeout(emove5, 20000);
+		setTimeout(emove6, 22000);
+	</script>
+</body>
+</html>
